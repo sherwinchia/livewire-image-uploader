@@ -47,7 +47,7 @@
     </div>
     @endif
     <div class="input-wrapper">
-        <input id="imagesInput" type="file" wire:model="rawImages" {{ $multiple ? 'multiple' : null }}>
+        <input id="imagesInput" type="file" accept="image/*" wire:model="rawImages" {{ $multiple ? 'multiple' : null }}>
         <div class="drop-zone">
               <div class="" wire:loading wire:target="rawImages">
                 Uploading...
