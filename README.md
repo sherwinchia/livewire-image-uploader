@@ -1,4 +1,5 @@
 # Very short description of the package
+![livewire-image-uploader](https://banners.beyondco.de/Livewire%20Image%20Uploader.png?theme=light&packageManager=composer+require&packageName=composer+require+sherwinchia%2Flivewire-image-uploader&pattern=endlessClouds&style=style_1&description=&md=0&showWatermark=0&fontSize=100px&images=photograph&widths=400&heights=400)
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/sherwinchia/livewire-image-uploader.svg?style=flat-square)](https://packagist.org/packages/sherwinchia/livewire-image-uploader)
 [![Total Downloads](https://img.shields.io/packagist/dt/sherwinchia/livewire-image-uploader.svg?style=flat-square)](https://packagist.org/packages/sherwinchia/livewire-image-uploader)
