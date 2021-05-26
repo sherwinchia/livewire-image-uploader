@@ -25,9 +25,10 @@ or
 ```
 | Props      | Type     | Required | Description|
 | -----------| ---------| :------: |-----------|
-| name       | string   |   ✅    |Parent component public properties to store uploaded images name.
-| multiple   | bool     |   ❌    |Enable multiple upload. (Default: false)
-| size       | int      |   ❌    | Image size limit. (Default: 1024KB)
+| name       | string   |   ✅    |Parent component public properties to store uploaded images name.|
+| multiple   | bool     |   ❌    |Enable multiple upload. (Default: false)|
+| size       | int      |   ❌    | Image size limit. (Default: 1024KB)|
+
 Add public properties to store the name of the images uploaded in array and use the ImageUploader trait in the component code (E.g FormComponent.php).
 ```PHP
 <?php
