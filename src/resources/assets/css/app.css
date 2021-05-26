@@ -64,6 +64,7 @@
 .image-uploader-container .image-wrapper .single-image > button > .icon {
 	height: 1rem;
 	width: 1rem;
+	color: rgb(54, 54, 54);
 }
 
 .image-uploader-container .image-wrapper .single-image label {
@@ -126,47 +127,4 @@
 
 .image-uploader-container .error-msg {
 	color: rgba(185, 28, 28, 1);
-}
-
-.hollow-dots-spinner,
-.hollow-dots-spinner * {
-	box-sizing: border-box;
-}
-
-.hollow-dots-spinner {
-	height: 0.8rem;
-	width: calc(30px * 3);
-}
-
-.hollow-dots-spinner .dot {
-	width: 0.8rem;
-	height: 0.8rem;
-	margin: 0 calc(0.8rem / 2);
-	border: calc(0.8rem / 5) solid #ebebeb;
-	border-radius: 50%;
-	float: left;
-	transform: scale(0);
-	animation: hollow-dots-spinner-animation 1000ms ease infinite 0ms;
-}
-
-.hollow-dots-spinner .dot:nth-child(1) {
-	animation-delay: calc(300ms * 1);
-}
-
-.hollow-dots-spinner .dot:nth-child(2) {
-	animation-delay: calc(300ms * 2);
-}
-
-.hollow-dots-spinner .dot:nth-child(3) {
-	animation-delay: calc(300ms * 3);
-}
-
-@keyframes hollow-dots-spinner-animation {
-	50% {
-		transform: scale(1);
-		opacity: 1;
-	}
-	100% {
-		opacity: 0;
-	}
 }

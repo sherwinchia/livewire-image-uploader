@@ -12,38 +12,51 @@ class ImageUploader extends Component
     public $rawImages;
     public $images = [];
     public $imagesName = [];
-    public $model, $oldImages, $multiple, $name, $size;
+    public $oldImages, $multiple, $name, $size;
 
     protected $messages = [
-        'rawImages.*.image' => 'The image format not valid.',
-        'rawImages.*.mimes' => 'The image format not valid.',
-        'rawImages.*.max' => 'The image exceed the size limit.',
+        'rawImages.*.image' => 'The images format must be type of image.',
+        'rawImages.*.mimes' => 'The images format must be :mimes.',
+        'rawImages.*.max' => 'The images must not be greater than :max KB.',
+        'rawImages.image' => 'The image format must be type of image.',
+        'rawImages.mimes' => 'The image format must be :mimes.',
+        'rawImages.max' => 'The image must not be greater than :max KB.',
     ];
 
-    public function mount(string $name, bool $multiple = null, int $size=1024, array $oldImages = null)
+    public function mount(string $name, bool $multiple = false, int $size=1024, array $old = null)
     {
-        $this->multiple = $multiple;
         $this->name = $name;
         $this->size = $size;
-        
-        $multiple ?? $this->rawImages=[];
-
-        $oldImages ?? $this->oldImages = $oldImages;
+        $this->multiple = $multiple;
+        $multiple ? $this->rawImages=[] : $this->rawImages = null;
+        $old ? $this->oldImages = $old : $this->oldImages = null;
     }
 
     public function updatingRawImages()
     {
-        $this->multiple ? $this->rawImages = [] : $this->rawImages = null;
-        $this->images = [];
+        $this->multiple ? $this->rawImages=[] : $this->rawImages = null;
+        $this->images = array();
     }
 
     public function updatedRawImages($value)
     {
-        $this->validate(
-            ['rawImages.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:'.$this->size],
-        );
+        if ($this->multiple) {
+            $this->validate(
+                ['rawImages.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:'.$this->size.'\''],
+            );
+        } 
+      
+        if (!$this->multiple) {
+            $this->validate(
+                ['rawImages' => 'image|mimes:jpeg,png,jpg,gif,svg|max:'.$this->size.'\''],
+                []
+            );
+        } 
 
-        $this->multiple ? $this->images = $value : $this->images = [$value];
+        // $this->images = $value;
+        $this->multiple ? $this->images = $value : $this->images = array($value);
+
+        $this->uploadImages();
     }
 
 
@@ -79,7 +92,7 @@ class ImageUploader extends Component
 
     public function handleImagesUpdated()
     {
-        $this->emitUp('imagesUpdated', $this->name, $this->imagesName);
+        $this->emit('imagesUpdated', $this->name, $this->imagesName);
     }
 
     public function render()

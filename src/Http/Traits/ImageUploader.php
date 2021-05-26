@@ -2,25 +2,24 @@
 
 namespace Sherwinchia\LivewireImageUploader\Http\Traits;
 
+use Illuminate\Support\Facades\Storage;
+
 trait ImageUploader
 {
     public function getListeners()
     {
-        return $this->listeners + [
-            'imagesUpdated', 'deleteImage'
-        ];
+        return ['imagesUpdated', 'deleteImage'];
     }
 
     public function imagesUpdated($propertyName, $imagesName)
     {
-        //return array of images name
+        //return array of uploaded images name
         $this->$propertyName = $imagesName;
     }
 
     public function deleteImage($oldImage)
     {
-        //return image URL
         //delete image
-        dd($oldImage);
+        Storage::delete('public/image-uploader/' . $oldImage);
     }
 }

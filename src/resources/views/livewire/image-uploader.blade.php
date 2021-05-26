@@ -1,15 +1,12 @@
 <div class="image-uploader-container">
-    {{-- <button wire:click="checkImage">checkImage</button>
-    <button wire:click="checkTempImage">checkTempImage</button> --}}
-    @if (!is_null($oldImages) && $oldImages->isNotEmpty())
+    @if (!is_null($oldImages) && !empty($oldImages))
         <h4>Current Images</h4>
         <div class="image-wrapper mb-4">
             @foreach ($oldImages as $index => $image)
                 <div
                     class="single-image">
-                    <img src="{{ $image }}"
+                    <img src="{{ asset('storage/image-uploader/'. $image) }}"
                         width="" alt="">
-
                     <button type="button"
                         wire:loading.attr="disabled" wire:target="handleRemoveImage({{ $index }}, true)"
                         wire:click.prevent="handleRemoveImage({{ $index }}, true)">
@@ -21,8 +18,6 @@
             @endforeach
         </div>
     @endif
-
-
     <h4 class=" mb-4">Selected image(s)</h4>
     @if (empty($images))
         <div class="image-uploader-no-image">
@@ -51,16 +46,11 @@
         @endforeach
     </div>
     @endif
-
     <div class="input-wrapper">
         <input id="imagesInput" type="file" wire:model="rawImages" {{ $multiple ? 'multiple' : null }}>
-
         <div class="drop-zone">
-
-              <div class="hollow-dots-spinner" :style="spinnerStyle" wire:loading wire:target="rawImages">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
+              <div class="" wire:loading wire:target="rawImages">
+                Uploading...
               </div>
 
             <p wire:loading.remove wire:target="rawImages" class="text-gray-400">
@@ -77,9 +67,5 @@
         </div>
     </div>
     @error('rawImages.*') <span class="error-msg">{{ $message }}</span>@enderror
-    <script>
-        document.getElementById("imagesInput").addEventListener("livewire-upload-finish",()=>{
-            @this.uploadImages();
-        });
-    </script>
+    @error('rawImages') <span class="error-msg">{{ $message }}</span>@enderror
 </div>
