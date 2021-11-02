@@ -19,9 +19,9 @@ composer require sherwinchia/livewire-image-uploader
 ## Usage
 Add the Livewire directive into component blade page (E.g form-component.blade.php).
 ```html
-<livewire:image-uploader" name="foo"> 
+<livewire:image-uploader name="foo"> 
 or
-<livewire:image-uploader" name="foo" size="2048" multiple>
+<livewire:image-uploader name="foo" size="2048" multiple>
 ```
 | Props      | Type     | Required | Description|
 | -----------| ---------| :------: |-----------|
