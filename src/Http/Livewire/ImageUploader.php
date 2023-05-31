@@ -23,18 +23,18 @@ class ImageUploader extends Component
         'rawImages.max' => 'The image must not be greater than :max KB.',
     ];
 
-    public function mount(string $name, bool $multiple = false, int $size=1024, array $old = null)
+    public function mount(string $name, bool $multiple = false, int $size = 1024, array $old = null)
     {
         $this->name = $name;
         $this->size = $size;
         $this->multiple = $multiple;
-        $multiple ? $this->rawImages=[] : $this->rawImages = null;
+        $multiple ? $this->rawImages = [] : $this->rawImages = null;
         $old ? $this->oldImages = $old : $this->oldImages = null;
     }
 
     public function updatingRawImages()
     {
-        $this->multiple ? $this->rawImages=[] : $this->rawImages = null;
+        $this->multiple ? $this->rawImages = [] : $this->rawImages = null;
         $this->images = array();
     }
 
@@ -42,16 +42,16 @@ class ImageUploader extends Component
     {
         if ($this->multiple) {
             $this->validate(
-                ['rawImages.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:'.$this->size.'\''],
+                ['rawImages.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:' . $this->size],
             );
-        } 
-      
+        }
+
         if (!$this->multiple) {
             $this->validate(
-                ['rawImages' => 'image|mimes:jpeg,png,jpg,gif,svg|max:'.$this->size.'\''],
+                ['rawImages' => 'image|mimes:jpeg,png,jpg,gif,svg|max:' . $this->size],
                 []
             );
-        } 
+        }
 
         // $this->images = $value;
         $this->multiple ? $this->images = $value : $this->images = array($value);
