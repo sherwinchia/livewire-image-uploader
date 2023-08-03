@@ -42,13 +42,13 @@ class ImageUploader extends Component
     {
         if ($this->multiple) {
             $this->validate(
-                ['rawImages.*' => 'image|mimes:jpeg,png,jpg,gif,svg,csv|max:' . $this->size],
+                ['rawImages.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:|csv' . $this->size],
             );
         }
 
         if (!$this->multiple) {
             $this->validate(
-                ['rawImages' => 'image|mimes:jpeg,png,jpg,gif,svg,csv|max:' . $this->size],
+                ['rawImages' => 'image|mimes:jpeg,png,jpg,gif,svg,csv|max:|csv' . $this->size],
                 []
             );
         }
